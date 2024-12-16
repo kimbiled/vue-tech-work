@@ -89,7 +89,7 @@ export default {
     async addNewItem() {
       try {
         const response = await axios.post(
-          "http://dev.mindwave.kz/api/sandbox/crud",
+          "/api/sandbox/crud",
           this.newItem
         );
         this.crudStore.addItem(response.data); 
@@ -131,7 +131,7 @@ export default {
       if (this.editingItem) {
         try {
           const response = await axios.put(
-            `http://dev.mindwave.kz/api/sandbox/crud/${this.editingItem.id}`,
+            `/api/sandbox/crud/${this.editingItem.id}`,
             this.editingItem
           );
           console.log("Ответ от сервера:", response.data);
