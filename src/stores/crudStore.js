@@ -14,7 +14,7 @@
         this.loading = true;
         this.error = null;
         try {
-          const response = await axios.get("/api/sandbox/crud");
+          const response = await axios.get("http://dev.mindwave.kz/api/sandbox/crud");
           const rows = response.data?.content?.rows; 
           if (Array.isArray(rows)) {
             this.items = rows;
@@ -34,7 +34,7 @@
       async addItem(newItem) {
         this.error = null;
         try {
-          const response = await axios.post("/api/sandbox/crud", newItem);
+          const response = await axios.post("http://dev.mindwave.kz/api/sandbox/crud", newItem);
           console.log("Ответ от сервера:", response.data);  
           const addedItem = response.data; 
           if (!addedItem || !addedItem.id) {
@@ -52,7 +52,7 @@
         this.error = null;
         try {
          
-          const response = await axios.put(`/api/sandbox/crud/${id}`, updatedItem);
+          const response = await axios.put(`http://dev.mindwave.kz/api/sandbox/crud/${id}`, updatedItem);
           const updatedFromServer = response.data;
           if (!updatedFromServer || !updatedFromServer.id) {
             console.error("Ошибка: сервер не вернул обновлённый объект.");
@@ -74,7 +74,7 @@
       async deleteItem(id) {
         this.error = null;
         try {
-          await axios.delete(`/api/sandbox/crud/${id}`);
+          await axios.delete(`http://dev.mindwave.kz/api/sandbox/crud/${id}`);
           this.items = this.items.filter(item => item.id !== id);
         } catch (error) {
           this.error = error;
@@ -84,7 +84,7 @@
 
       async syncWithServer() {
         try {
-          const response = await axios.get("/api/sandbox/crud");
+          const response = await axios.get("http://dev.mindwave.kz/api/sandbox/crud");
           const rows = response.data?.content?.rows;
 
           if (Array.isArray(rows)) {
